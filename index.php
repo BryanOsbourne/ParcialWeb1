@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
-
 session_start();
 if (!isset($_SESSION['user_loged'])) {
-    header("Location: login.php");
+    echo "<script>window.location.href = 'login.php';</script>";
+	exit();
 }
 require_once("conexion.php");
 
@@ -29,10 +27,14 @@ function delete($link, $codigo)
 
 if (isset($_POST['eliminar'])) {
     delete($con->conectar(), $_POST["key"]);
-    header("Location: index.php");
+    echo "<script>window.location.href = 'index.php';</script>";
+	exit();
 }
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
 
 <head>
     <meta charset="UTF-8">

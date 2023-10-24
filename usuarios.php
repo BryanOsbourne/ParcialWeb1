@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 session_start();
 if (!isset($_SESSION['user_loged'])) {
     header("Location: login.php");
+	exit();
 }
 require_once("conexion.php");
 
@@ -21,6 +20,8 @@ function lis($link)
 
 $arr = lis($con->conectar());
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">

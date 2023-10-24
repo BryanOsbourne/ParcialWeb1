@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 session_start();
 if (!isset($_SESSION['user_loged'])) {
     header("Location: login.php");
+	exit();
 }
 
 if (isset($_POST['registrar'])) {
-    $link = new mysqli('aws.connect.psdb.cloud', 'e3a7feva4305ap9bbsqv', 'pscale_pw_1lXfooeYPh8T5zjHjA5EzGjZC5eHUO0M8XTbNsj5aVl', 'parcial');
+    $link = new mysqli('localhost', 'id21445984_admin', 'Adminadmin1!', 'id21445984_parcial');
 
     if ($link->connect_errno) {
         echo "Falló la conexión a MySQL: (" . $link->connect_errno . ") " . $link->connect_error;
@@ -19,7 +18,8 @@ if (isset($_POST['registrar'])) {
         $result = $link->query($sql);
         if ($result == true) {
             echo "Sala creada exitosamente";
-            header("Location: sala.php");
+            echo "<script>window.location.href = 'sala.php';</script>";
+            exit();
         } else {
             echo "Error al crear la sala " . $link->error;
         }
@@ -27,7 +27,8 @@ if (isset($_POST['registrar'])) {
     mysqli_close($link);
 }
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

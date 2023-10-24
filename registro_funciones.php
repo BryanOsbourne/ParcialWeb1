@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 
 session_start();
 if (!isset($_SESSION['user_loged'])) 
 {
     header("Location: login.php");
+	exit();
 }
 
 require_once("conexion.php");
@@ -35,7 +34,7 @@ $arrSala = listarSalas($con->conectar());
 
 if ($_POST) 
 {
-    $link = new mysqli('aws.connect.psdb.cloud', 'e3a7feva4305ap9bbsqv', 'pscale_pw_1lXfooeYPh8T5zjHjA5EzGjZC5eHUO0M8XTbNsj5aVl', 'parcial');
+    $link = new mysqli('localhost', 'id21445984_admin', 'Adminadmin1!', 'id21445984_parcial');
 
     if ($link->connect_errno) 
     {
@@ -53,8 +52,10 @@ if ($_POST)
         $result = $link->query($sql);
         if ($result == true) 
         {
-            echo "Usuario Creado Exitosamente";
-            header("Location: index.php");
+            echo "Funcion Creada Exitosamente";
+			echo "<script>window.location.href = 'index.php';</script>";
+	        exit();
+            
         } else 
         {
             echo "Error al crear el Usuario " . $link->error;
@@ -64,7 +65,8 @@ if ($_POST)
 }
 
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

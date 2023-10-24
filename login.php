@@ -1,3 +1,37 @@
+<?php
+    if (isset($_POST['login'])) 
+    {
+
+        $link = new mysqli('localhost', 'id21445984_admin', 'Adminadmin1!', 'id21445984_parcial');
+
+        if ($link->connect_errno) 
+        {
+            echo "Falló la conexión a MySQL: (" . $link->connect_errno . ") " . $link->connect_error;
+        } 
+        else 
+        {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $sql = "SELECT * FROM usuario WHERE username = '$username' and password = '$password'";
+            $result = $link->query($sql);
+
+            if ($row = $result->fetch_assoc()) 
+            {
+                session_start();
+                $_SESSION['Reg'] = 'ok';
+                $_SESSION['user_loged'] = $row['nombre'];
+                $_SESSION['username_loged'] = $username;
+                header('Location: index.php');
+            } 
+            else 
+            {
+                $_SESSION['Reg'] = 'fail';
+                echo "Usuario o Contraseña Incorrecto";
+            }
+        }
+        mysqli_close($link);
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,38 +89,4 @@
         </form>
     </main>
 </body>
-<?php
-    if (isset($_POST['login'])) 
-    {
-
-        $link = new mysqli('aws.connect.psdb.cloud', 'e3a7feva4305ap9bbsqv', 'pscale_pw_1lXfooeYPh8T5zjHjA5EzGjZC5eHUO0M8XTbNsj5aVl', 'parcial');
-
-        if ($link->connect_errno) 
-        {
-            echo "Falló la conexión a MySQL: (" . $link->connect_errno . ") " . $link->connect_error;
-        } 
-        else 
-        {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $sql = "SELECT * FROM usuario WHERE username = '$username' and password = '$password'";
-            $result = $link->query($sql);
-
-            if ($row = $result->fetch_assoc()) 
-            {
-                session_start();
-                $_SESSION['Reg'] = 'ok';
-                $_SESSION['user_loged'] = $row['nombre'];
-                $_SESSION['username_loged'] = $username;
-                header('Location: index.php');
-            } 
-            else 
-            {
-                $_SESSION['Reg'] = 'fail';
-                echo "Usuario o Contraseña Incorrecto";
-            }
-        }
-        mysqli_close($link);
-    }
-?>
 </html>

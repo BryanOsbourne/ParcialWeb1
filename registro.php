@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 
 session_start();
 if (!isset($_SESSION['user_loged'])) 
 {
     header("Location: login.php");
+	exit();
 }
 
 if ($_POST) 
 {
-    $link = new mysqli('aws.connect.psdb.cloud', 'e3a7feva4305ap9bbsqv', 'pscale_pw_1lXfooeYPh8T5zjHjA5EzGjZC5eHUO0M8XTbNsj5aVl', 'parcial');
+    $link = new mysqli('localhost', 'id21445984_admin', 'Adminadmin1!', 'id21445984_parcial');
 
     if ($link->connect_errno) 
     {
@@ -29,7 +28,8 @@ if ($_POST)
         if ($result == true) 
         {
             echo "Usuario Creado Exitosamente";
-            header("Location: usuarios.php");
+            echo "<script>window.location.href = 'usuarios.php';</script>";
+            exit();
         } 
         else 
         {
@@ -40,6 +40,8 @@ if ($_POST)
 }
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
