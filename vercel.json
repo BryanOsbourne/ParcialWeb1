@@ -1,7 +1,7 @@
 {
 	"functions" : {
 
-		"PARCIAL_02/login.php" : {
+		"api/login.php" : {
 
 			"runtime" : "vercel-php@0.6.0"
 			
