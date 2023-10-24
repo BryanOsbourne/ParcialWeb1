@@ -56,7 +56,6 @@
     </main>
 </body>
 <?php
-phpinfo();
     if (isset($_POST['login'])) 
     {
 
