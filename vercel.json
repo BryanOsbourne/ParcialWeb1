@@ -1,0 +1,10 @@
+{
+	"functions" : {
+
+		"PARCIAL_02/login.php" : {
+
+			"runtime" : "vercel-php@0.6.0"
+			
+		}
+	}
+}
